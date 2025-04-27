@@ -1,0 +1,28 @@
+.journal-entry {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .journal-entry:hover {
+    background-color: #ce8484;
+  }
+  
+  .journal-entry-title {
+    margin: 0 0 0.25rem;
+  }
+
+  .journal-entry-preview {
+    margin: 0 0 0.5rem;
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+  
+  .journal-entry-date {
+    font-size: 0.875rem;
+    color: #666;
+  }
+  
