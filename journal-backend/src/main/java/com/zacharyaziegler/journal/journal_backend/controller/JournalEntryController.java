@@ -3,10 +3,12 @@ package com.zacharyaziegler.journal.journal_backend.controller;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.zacharyaziegler.journal.journal_backend.entity.JournalEntry;
 import com.zacharyaziegler.journal.journal_backend.service.JournalEntryService;
@@ -44,11 +46,21 @@ public class JournalEntryController {
     }
 
     @PutMapping("/{id}")
-    public JournalEntry update(@PathVariable Long id, @RequestBody JournalEntry entry) {
-        entry.setId(id);
-        entry.setUpdatedAt(LocalDateTime.now());
-        return service.save(entry);
+    public JournalEntry update(@PathVariable Long id,
+                               @RequestBody JournalEntry incoming) {
+      JournalEntry existing = service.findById(id); // Retrieve existing row
+      if (existing == null) {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+      }
+      
+      // Copy only the fields to be changed (not createdAt since its an update)
+      existing.setTitle(incoming.getTitle());
+      existing.setContent(incoming.getContent());
+      existing.setUpdatedAt(LocalDateTime.now());
+    
+      return service.save(existing);
     }
+    
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
