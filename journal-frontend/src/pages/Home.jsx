@@ -46,7 +46,7 @@ const Home = () => {
             <JournalEntry
               key={entry.id}
               entry={entry}
-              onClick={() => navigate(`/entries/${entry.id}`)}
+              onClick={() => navigate(`/edit/${entry.id}`)}
             />
           ))
         ) : (

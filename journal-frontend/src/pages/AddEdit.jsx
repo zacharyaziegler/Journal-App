@@ -42,9 +42,8 @@ const AddEdit = () => {
         if (!res.ok) throw new Error('Save failed');
         return res.json();
       })
-      .then(saved => {
-        // after save, go to detail view of this entry
-        navigate(`/entries/${saved.id}`);
+      .then( () => {
+        navigate(`/`);
       })
       .catch(err => {
         console.error(err);
