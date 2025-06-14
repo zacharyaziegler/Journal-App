@@ -33,7 +33,6 @@ const Home = () => {
         <h1 className="home-title">My Journal</h1>
         <div className="home-header-buttons">
           <button className="home-button" onClick={() => navigate("/add")} aria-label="Add entry">＋</button>
-          <button className="home-button" onClick={() => navigate("/edit")} aria-label="Edit entries">✎</button>
         </div>
       </header>
 

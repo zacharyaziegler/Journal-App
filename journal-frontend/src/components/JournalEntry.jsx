@@ -10,7 +10,7 @@ const JournalEntry = ({ entry, onClick, onDelete }) => {
     e.stopPropagation(); // Prevents triggering card's onClick
     e.preventDefault();
 
-    if (window.confirm("Are you sure you want to delete this enty?")) {
+    if (window.confirm("Are you sure you want to delete this entry?")) {
       onDelete(entry.id);
     }
   };
