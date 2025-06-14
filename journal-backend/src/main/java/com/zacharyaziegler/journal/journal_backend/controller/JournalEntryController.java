@@ -36,7 +36,11 @@ public class JournalEntryController {
 
     @GetMapping("/{id}")
     public JournalEntry get(@PathVariable Long id) {
-        return service.findById(id);
+        JournalEntry found = service.findById(id);
+        if (found == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entry not found");
+        }
+        return found;
     }
 
     @PostMapping
